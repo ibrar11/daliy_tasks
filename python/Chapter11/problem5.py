@@ -15,10 +15,25 @@ class Vector:
         return result
 
     def __str__(self):
-        return f"Vector({', '.join(map(str, self.components))})"
+        labels = ['i', 'j', 'k', 'l', 'm', 'n']
+        parts = []
+
+        for idx, val in enumerate(self.components):
+            label = labels[idx] if idx < len(labels) else f"x{idx+1}"
+            sign = '+' if val >= 0 else '-'
+            formatted = f"{sign} {abs(val)}{label}"
+            parts.append(formatted.strip())
+
+        result = ' '.join(parts)
+        if result.startswith('+'):
+            result = result[2:]
+        else: 
+            result = '-' + result[2:] 
+
+        return f"Vector({result})"
     
 
-v1 = Vector([2, 4, 6])
+v1 = Vector([-12, 4, 6])
 v2 = Vector([1, 3, 5])
 
 print("v1 =", v1)
