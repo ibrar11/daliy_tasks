@@ -14,6 +14,9 @@ class Vector:
         result = sum(a * b for a, b in zip(self.components, other.components))
         return result
 
+    def __len__(self):
+        return len(self.components)
+
     def __str__(self):
         labels = ['i', 'j', 'k', 'l', 'm', 'n']
         parts = []
@@ -40,3 +43,4 @@ print("v1 =", v1)
 print("v2 =", v2)
 print("\nAddition:", v1 + v2)
 print("Dot Product:", v1 * v2)
+print("Dimension of v1:", len(v1))
