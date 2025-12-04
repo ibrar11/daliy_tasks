@@ -1,7 +1,13 @@
+import os
+from dotenv import load_dotenv as env
+env()
+url = os.getenv("URL")
+api_key = os.getenv("API_KEY")
+
 from ibm_watsonx_ai import Credentials
 credentials = Credentials(
-    url = "https://jp-tok.ml.cloud.ibm.com", 
-    api_key = "vqtyihDr2oc5EPXnOQOtOk9nyXw6KlbDmRSMNzQbJe9"
+    url = url, 
+    api_key = api_key
 )
 
 from ibm_watsonx_ai.metanames import GenTextParamsMetaNames
