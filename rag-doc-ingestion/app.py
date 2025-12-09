@@ -31,3 +31,8 @@ with open(filename, 'r') as file:
     print(contents)
 
 
+loader = TextLoader(filename)
+documents = loader.load()
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+texts = text_splitter.split_documents(documents)
+print(len(texts))
