@@ -20,19 +20,23 @@ from ibm_watson_machine_learning.foundation_models.extensions.langchain import W
 import wget
 
 filename = 'companyPolicies.txt'
-url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/6JDbUb_L3egv_eOkouY71A.txt'
+# url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/6JDbUb_L3egv_eOkouY71A.txt'
 
-# Use wget to download the file
-wget.download(url, out=filename)
-print('file downloaded')
+# # Use wget to download the file
+# wget.download(url, out=filename)
+# print('file downloaded')
 
-with open(filename, 'r') as file:
-    contents = file.read()
-    print(contents)
+# with open(filename, 'r') as file:
+#     contents = file.read()
+#     print(contents)
 
 
 loader = TextLoader(filename)
 documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 texts = text_splitter.split_documents(documents)
-print(len(texts))
+# print(len(texts))
+
+embeddings = HuggingFaceEmbeddings()
+docsearch = Chroma.from_documents(texts, embeddings)  # store the embedding in docsearch using Chromadb
+# print('document ingested')
